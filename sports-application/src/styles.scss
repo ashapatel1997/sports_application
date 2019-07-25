@@ -41,7 +41,7 @@ input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 
 /*dialog custome style*/
 .dialogStyle { background: unset;
-  .mat-dialog-container { background: white; padding: 0px;overflow:hidden; }
+  .mat-dialog-container { background: #b3b3b3; padding: 0px; overflow: hidden; min-width: 300px; }
 }
 
 
@@ -68,7 +68,11 @@ input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
     0% { width: $w-0; }
     100% { width: $w-100; }
   }
- 
+
+  /*dialog custome style*/
+  .dialogStyle {
+    .mat-dialog-container {min-width: unset; }
+  }
 }
 
 

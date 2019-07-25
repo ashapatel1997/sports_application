@@ -73,6 +73,7 @@ export class TestresultsService {
     dialogConfig.panelClass = ['dialogStyle'];
     dialogConfig.position = { top: '30px' };
     dialogConfig.autoFocus = false;
+    dialogConfig.restoreFocus = false;
     dialogConfig.data = { 'heading': heading, 'message': message };
     this._matDialog.open(DeleteDialogComponent, dialogConfig)
       .afterClosed()

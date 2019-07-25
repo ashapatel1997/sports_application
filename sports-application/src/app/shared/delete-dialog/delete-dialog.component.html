@@ -18,11 +18,11 @@
 <!--confirmation message--> 
 <div class="confirmation-message">
 
-  <span>{{message}}</span>
+  <span class="text-capitalize">{{message}}</span>
 </div>
 
 <!--dialog actions (buttons)-->
 <div class="dialog-actions">
-  <button mat-button class="text-capitalize" [mat-dialog-close]="false" (click)="closeDialog()">no</button>
-  <button mat-button class="text-capitalize" [mat-dialog-close]="true" (click)="confirmDelete()">yes</button>
+  <button mat-button class="text-capitalize delete-btn" [mat-dialog-close]="true" (click)="confirmDelete()">yes</button>
+  <button mat-button class="text-capitalize delete-cancel-btn" [mat-dialog-close]="false" (click)="closeDialog()">cancel</button>
 </div>

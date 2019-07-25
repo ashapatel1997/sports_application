@@ -9,7 +9,7 @@ import { MatTableDataSource, } from '@angular/material';
   styleUrls: ['./test-details.component.scss']
 })
 
-export class TestDetailsComponent implements OnInit {
+export class TestDetailsComponent  {
 
   constructor(private _testResultsService: TestresultsService,
    ) { }
@@ -46,6 +46,7 @@ export class TestDetailsComponent implements OnInit {
     this.dataSource = new MatTableDataSource<TestDetail>(this.testDetails);
 
   }
+
 
 /**
  *on click of "add new athlete to test" button, open/close section for create new test
