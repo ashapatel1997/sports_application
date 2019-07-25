@@ -1,0 +1,45 @@
+@import '../../../styles.scss';
+
+/*dialog header*/
+.dialog-header { min-height: unset; height: 50px; background-color: rgba(38,38,38,0.9);
+  .dialog-heading { font-weight: 100; }
+  .close-dialog-btn { right: 0; cursor: pointer; border-radius: 20px; padding: 5px;
+    &:hover { background-color: rgba(38,38,38,0.5); }
+  }
+}
+
+/*confirmation-message*/
+.confirmation-message { background-color: rgba(38,38,38,0.5); height: 100px;
+  .close-dialog-btn { color: rgba(217, 217, 217,1); float: right; cursor: pointer; margin: 5px; display: block; }
+  span { padding: 40px 10px; text-align: center; display: block; color: white; font-size: $medium; font-weight: 100; }
+}
+
+ /*dialog actions (buttons)*/
+.dialog-actions { height: 40px;
+  button { background-color: rgba(38,38,38,0.7); color: white; font-size: $small; width: 50%; border: 1px solid rgba(64, 64, 64,0.2); height: 100%; border-radius: unset; padding: 0; }
+}
+
+
+// Small devices,extra small devices (landscape phones,portrait phones, less than 768px)
+@media (max-width:767.98px) {
+
+  /*dialog header*/
+  .dialog-header { height: 40px;
+    .dialog-heading { font-size: $medium; }
+    .close-dialog-btn { right: 0; cursor: pointer; border-radius: 20px; padding: 5px; font-size: 20px;
+      &:hover { background-color: rgba(38,38,38,0.5); }
+    }
+  }
+
+  /*confirmation-message*/
+  .confirmation-message { height: 80px;
+    .close-dialog-btn { font-size: $medium; }
+    span { padding: 30px 10px; font-size: $small; }
+  }
+
+  /*dialog actions (buttons)*/
+  .dialog-actions { height: 30px;
+    button { line-height: 30px;  font-size: $x-small; }
+  }
+
+}

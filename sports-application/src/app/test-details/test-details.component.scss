@@ -1,0 +1,80 @@
+@import '../../styles.scss';
+
+/*---------------HEADER-----------------*/
+
+ /*header row*/
+.header-row {
+  .test-name { font-size: $large; text-decoration: none; color: white; }
+  button { border: 2px solid rgba(64, 64, 64,0.5); font-size: $medium; }
+  .add-new-athlete-btn { margin-right: 4px; }
+}
+
+/* show button lable and hide icon in small devices*/
+/*header button icon*/
+.header-btn-icon { display: none; }
+
+/*header button label*/
+.header-btn-label { display: inline; }
+
+/*--------bottom right section (add new athlete)--------*/
+
+/*form to add new athlete to test*/
+.add-new-athlete-form { 
+  button { line-height: 35px; margin:10px 10px 20px 0px; color: white; font-size: $medium; border: 2px solid rgba(64, 64, 64,0.6); }
+  .delete-btn { display: inline-block; }
+}
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width:575px) {
+
+  /*header row*/
+  .header-row {
+    .test-name { font-size: $x-small; }
+    button { border: unset; font-size: $x-small; padding: 0px; line-height: 0px; min-width: 17px !important; }
+  }
+
+  /*header button icon*/
+  .header-btn-icon { font-size: $medium; }
+
+}
+ 
+// Small devices (landscape phones, less than 768px)
+@media (min-width:576px) and (max-width: 767.98px) {
+
+  /*header row*/
+    .header-row {
+      .test-name { font-size: $medium; }
+      button { border: unset; font-size: $small; padding: 0px; line-height: 0px; min-width: 25px !important; }
+      .add-new-athlete-btn { margin-right: 4px; }
+    }
+  
+  /*header button icon*/
+  .btn-icon { font-size: $large;}
+
+}
+
+// Small devices,extra small devices (landscape phones,portrait phones, less than 768px)
+@media (max-width: 767.98px) {
+
+  /* hide button lable and show only icon in small devices*/
+  /*header button icon*/
+  .header-btn-icon { display: inline; }
+
+  /*header button label*/
+  .header-btn-label { display: none; }
+
+}
+
+// Medium devices,Small devices,extra small devices (landscape phones,portrait phones,tablets, less than 992px)
+@media (max-width:991.98px) {
+
+  /*form to add new athlete*/
+  .add-new-athlete-form {
+    button { font-size: $x-small; line-height: 30px; }
+  }
+
+}
+
+
+
+

@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\shared",
+    "\\src\\app\\shared\\delete-dialog",
+    "\\src\\app\\shared\\styles",
+    "\\src\\app\\test-details",
+    "\\src\\app\\test-results"
+  ],
+  "SelectedNode": "\\src\\app\\shared\\delete-dialog\\delete-dialog.component.ts",
+  "PreviewInSolutionExplorer": false
+}

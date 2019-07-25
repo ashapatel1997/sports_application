@@ -1,0 +1,29 @@
+@import '../../styles.scss';
+
+/*---------------HEADER-----------------*/
+.header-row {
+  .heading { font-size: $x-large }
+  .create-new-test-btn { border: 2px solid rgba(64, 64, 64,0.5); font-size: $medium; }
+}
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+
+  /*---------------HEADER-----------------*/
+  .header-row {
+    .heading { font-size: $medium; }
+    .create-new-test-btn { font-size: $xx-small; padding: 10px; line-height: 0px; }
+  }
+}
+
+
+// Small devices (landscape phones, less than 768px)
+@media (min-width:576px) and (max-width: 767.98px) {
+
+  /*---------------HEADER-----------------*/
+    .header-row {
+      .heading { font-size: $large; }
+      .create-new-test-btn { font-size: $small; line-height: 15px; padding: 10px; }
+    }
+  
+}

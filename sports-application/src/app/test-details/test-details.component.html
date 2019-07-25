@@ -1,0 +1,130 @@
+<!-- HEADER -->
+<mat-toolbar class="header mat-elevation-z6">
+
+  <mat-toolbar-row class="header-row">
+
+    <!-- logo -->
+    <a class="text-uppercase test-name" routerLink="/testresults" matTooltip="Back To Tests" matTooltipClass="tooltip">cooper test d.170719</a>
+
+    <!--flex:auto to fill remaining space-->
+    <span class="spacer"></span>
+
+    <!-- create new test button -->
+    <button mat-button class="text-capitalize add-new-athlete-btn" (click)="showAddNewAthleteSection()" [disabled]="styleAfterAction">
+      <span class="header-btn-label">add new athlete</span>
+      <mat-icon class="header-btn-icon" matTooltip="Add Athlete To Test">library_add</mat-icon>
+    </button>
+
+    <!-- delete test button -->
+    <button mat-button class="text-capitalize delete-athlete-btn" (click)="deleteTest()" [disabled]="styleAfterAction">
+      <span class="header-btn-label">delete test</span>
+      <mat-icon class="header-btn-icon" matTooltip="Delete Test">delete_forever</mat-icon>
+    </button>
+
+  </mat-toolbar-row>
+
+</mat-toolbar>
+
+<!-- BOTTOM SECTION-->
+<section class="bottom-section">
+
+  <!--test list section-->
+  <div class="bottom-left-section" [ngClass]="{'bottom-left-section-before-action':styleBeforeAction,'bottom-left-section-after-action':styleAfterAction}">
+
+    <!-- user instruction and table for test details -->
+    <mat-card class="list-card">
+
+      <!-- instruction -->
+      <div class="user-instruction">
+        <h4>(Click on row to change athlete details)</h4>
+      </div>
+
+      <!--test details table-->
+      <div class="list-table">
+
+        <table mat-table [dataSource]="dataSource" >
+
+          <!-- sr.no Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>  </th>
+            <td mat-cell *matCellDef="let element" > {{element.id}} </td>
+          </ng-container>
+
+          <!-- ranking Column -->
+          <ng-container matColumnDef="ranking">
+            <th mat-header-cell *matHeaderCellDef class="text-capitalize "> Ranking </th>
+            <td mat-cell *matCellDef="let element"> {{element.ranking}} </td>
+          </ng-container>
+
+          <!-- distance Column -->
+          <ng-container matColumnDef="distance">
+            <th mat-header-cell *matHeaderCellDef class="text-capitalize "> Distance (meters) </th>
+            <td mat-cell *matCellDef="let element"> {{element.distance}} </td>
+          </ng-container>
+
+          <!-- fitness rating Column -->
+          <ng-container matColumnDef="rating">
+            <th mat-header-cell *matHeaderCellDef class="text-capitalize "> Fitness Rating </th>
+            <td mat-cell *matCellDef="let element"> {{element.rating}} </td>
+          </ng-container>
+
+          <!-- row definition -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)" ></tr>
+        </table>
+
+
+      </div>
+
+    </mat-card>
+
+  </div>
+
+
+  <!--create new test section (initially hidden)-->
+  <div [ngClass]="{'hide-element':styleBeforeAction,'bottom-right-section':styleAfterAction}" (clickOutside)="onClickedOutside($event)" [exclude]="'.add-new-athlete-btn,.list-table,.delete-athlete-btn'">
+
+    <!--close section btn-->
+    <i class="material-icons close-side-section-icon" mat-button (click)="closeSideSection()">
+      close
+    </i>
+
+    <!--heading and form to create new test-->
+    <mat-card class="form-card">
+
+      <!-- heading -->
+      <div class="form-heading">
+        <h1 class="text-capitalize">{{formHeading}}</h1>
+      </div>
+
+      <!-- add new athlete form -->
+      <form class="add-new-athlete-form">
+
+        <!--name field-->
+        <div>
+          <label class="text-capitalize">name</label>
+          <select class="text-capitalize ">
+            <option *ngFor="let name of testDetails" [value]="name.ranking" class="text-capitalize ">{{name.ranking}}</option>
+          </select>
+        </div>
+
+        <!--distance field-->
+        <div>
+          <label class="text-capitalize">distance (meter)</label>
+          <input type="number" />
+        </div>
+
+        <!--button to save created test-->
+        <button mat-button class="text-capitalize  " (click)="saveAthlete()">
+          save
+        </button>
+        <button mat-button class="text-capitalize " [ngClass]="{'hide-element':hideDeleteButton,'delete-btn':!hideDeleteButton}" (click)="deleteAthlete()">
+          delete
+        </button>
+      </form>
+
+    </mat-card>
+
+    </div>
+
+</section>

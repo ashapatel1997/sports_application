@@ -1,0 +1,113 @@
+<!-- HEADER -->
+<mat-toolbar class="header mat-elevation-z6">
+
+  <mat-toolbar-row class="header-row">
+
+    <!-- logo -->
+    <span class="text-uppercase heading">infinium</span>
+
+    <!-- fill space betweem element -->
+    <span class="spacer"></span>
+
+    <!-- create new test button -->
+    <button mat-button class="text-capitalize create-new-test-btn" (click)="showCreateNewTestSection()">create new test</button>
+
+  </mat-toolbar-row>
+
+</mat-toolbar>
+
+<!-- BOTTOM -->
+<section class="bottom-section">
+
+  <!--test list section -->
+  <div class="bottom-left-section" [ngClass]="{'bottom-left-section-before-action':styleBeforeAction,'bottom-left-section-after-action':styleAfterAction}">
+
+    <!-- user instruction and table for test list -->
+    <mat-card class="list-card">
+
+      <!-- instruction -->
+      <div class="user-instruction">
+        <h4 >(Click on row to view details)</h4>
+      </div>
+
+      <!--test list table-->
+      <div class="list-table">
+
+        <table mat-table [dataSource]="dataSource" >
+
+          <!-- date Column -->
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef class="text-capitalize "> Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+          </ng-container>
+
+          <!-- number of participants Column -->
+          <ng-container matColumnDef="numberOfParticipants">
+            <th mat-header-cell *matHeaderCellDef class="text-capitalize "> Number Of participants </th>
+            <td mat-cell *matCellDef="let element"> {{element.numberOfParticipants}} </td>
+          </ng-container>
+
+          <!-- test type Column -->
+          <ng-container matColumnDef="testType">
+            <th mat-header-cell *matHeaderCellDef class="text-capitalize "> Test type </th>
+            <td mat-cell *matCellDef="let element"> {{element.testType}} </td>
+          </ng-container>
+
+          <!-- row definition -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)"></tr>
+        </table>
+
+      </div>
+
+    </mat-card>
+
+  </div>
+
+  <!--create new test section (initially hidden)-->
+  <div [ngClass]="{'hide-element':styleBeforeAction,'bottom-right-section':styleAfterAction}" (clickOutside)="onClickedOutside($event)" [exclude]="'.create-new-test-btn'">
+
+    <!--close section btn-->
+    <i class="material-icons close-side-section-icon" mat-button (click)="closeSideSection()">
+      close
+    </i>
+
+    <!--heading and form to create new test-->
+    <mat-card class="form-card">
+
+      <!-- heading -->
+      <div class="form-heading">
+        <h1 class="text-capitalize">Create New Test</h1>
+      </div>
+
+      <!-- create new test form -->
+      <form  [formGroup]="newTestgroup">
+
+        <!--type field-->
+        <div>
+          <label class="text-capitalize">type</label>
+          <select class="text-capitalize ">
+            <option *ngFor="let type of testTypes" [value]="type.testType" class=" text-capitalize ">{{type.testType}}</option>
+          </select>
+        </div>
+
+        <!--date field-->
+        <div>
+          <label class="text-capitalize">date</label>
+          <input type="number"  formControlName="testDate" required />
+
+        </div>
+
+        <!--button to save created test-->
+        <button mat-button class="text-capitalize create-btn" (click)="createTest()">
+          create test
+        </button>
+      </form>
+
+  
+    </mat-card>
+
+  </div>
+
+ 
+</section>
