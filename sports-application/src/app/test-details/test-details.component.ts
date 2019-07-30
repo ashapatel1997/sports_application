@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { TestresultsService } from '../../app/testresults.service';
-import { TestDetail } from '../../app/test-detail';
-import { MatTableDataSource, MatSort, } from '@angular/material';
+import { MatTableDataSource } from '@angular/material';
 import { Test } from '../test';
 import { ActivatedRoute } from '@angular/router';
 import { Athlete } from '../athlete';

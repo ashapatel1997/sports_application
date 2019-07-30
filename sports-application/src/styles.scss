@@ -6,7 +6,7 @@
 /*common style import*/
 @import "./app/shared/styles/common.scss";
 
-body { padding:0px;margin:0px;overflow:hidden;}
+body { padding: 0px; margin: 0px; overflow: hidden; }
 
 
 /*text transform*/
@@ -14,7 +14,7 @@ body { padding:0px;margin:0px;overflow:hidden;}
 .text-capitalize { text-transform: capitalize; }
 
 /*text-size,alignment*/
-.text-x-small { font-size:$x-small;}
+.text-x-small { font-size: $x-small; }
 
 /*remove inner & outer spin button of input [type=number]*/
 input::-webkit-inner-spin-button,
@@ -23,19 +23,9 @@ input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 /*hide element*/
 .hide-element { display: none; }
 
-
 /*filled remaining space between elements*/
 .spacer { flex: auto; }
 
-/*instruction written above table*/
-.user-instruction { height: auto;
-  h4 { color: #bfbfbf; text-align: center; font-weight: 500; font-size: $x-small; padding: 0; margin: 10px; }
-}
-
-/*close bottom right section*/
-.close-side-section-icon { padding: 5px; float: right; margin: 5px 25px; font-size: $x-large; color: rgba(217, 217, 217,0.5); cursor: pointer;
-  &:hover { background-color: rgba(217, 217, 217,0.1); border-radius: 20px; }
-}
 
 /*snackbar custom style*/
 .snackBarStyle { background-color: rgba(230,0,92,1); color: white; min-width: 300px !important; padding: 0px !important; min-height: 40px !important; margin: 0 !important;
@@ -50,9 +40,6 @@ input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 /*tooltip custom style*/
 .tooltip { font-size: $small; }
 
-/*error message */
-.error-message { font-size: 13px; }
-
 /*sideBar animation (width)*/
 @keyframes showSideSection {
   0% { width: $w-0; opacity: 0; }
@@ -60,11 +47,12 @@ input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 }
 
 //placeholder color
-::placeholder {  color: white; opacity: 0.5; }
+::placeholder { color: white; opacity: 0.5; }
 
 
 // Small devices,extra small devices (landscape phones,portrait phones, less than 768px)
 @media (max-width:767.98px) {
+
   /*sideBar animation (width)*/
   @keyframes showSideSection {
     0% { width: $w-0; }
@@ -74,10 +62,4 @@ input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
   .dialogStyle {
     .mat-dialog-container { min-width: unset; }
   }
-}
-
-// Medium devices,Small devices,extra small devices (landscape phones,portrait phones,tablets, less than 992px)
-@media (max-width:991.98px) {
-  /*close bottom right section*/
-  .close-side-section-icon { font-size: $large; }
 }
