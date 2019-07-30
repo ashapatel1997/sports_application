@@ -26,30 +26,30 @@
     <mat-card class="list-card">
 
       <!-- instruction -->
-      <div class="user-instruction">
-        <h4 >(Click on row to view details)</h4>
+      <div class="user-instruction" *ngIf="isTestAvailable">
+        <h4>(Click on row to view details)</h4>
       </div>
 
       <!--test list table-->
-      <div class="list-table">
+      <div class="list-table" [hidden]="!isTestAvailable">
 
         <table mat-table [dataSource]="dataSource" >
 
           <!-- date Column -->
           <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef class="text-capitalize "> Date </th>
+            <th mat-header-cell *matHeaderCellDef  class="text-capitalize "> Date </th>
             <td mat-cell *matCellDef="let element"> {{element.date}} </td>
           </ng-container>
 
           <!-- number of participants Column -->
-          <ng-container matColumnDef="numberOfParticipants">
+          <ng-container matColumnDef="athlete">
             <th mat-header-cell *matHeaderCellDef class="text-capitalize "> Number Of participants </th>
-            <td mat-cell *matCellDef="let element"> {{element.numberOfParticipants}} </td>
+            <td mat-cell *matCellDef="let element "> {{element.athlete.length}} </td>
           </ng-container>
 
           <!-- test type Column -->
           <ng-container matColumnDef="testType">
-            <th mat-header-cell *matHeaderCellDef class="text-capitalize "> Test type </th>
+            <th mat-header-cell *matHeaderCellDef  class="text-capitalize "> Test type </th>
             <td mat-cell *matCellDef="let element"> {{element.testType}} </td>
           </ng-container>
 
@@ -58,6 +58,13 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)"></tr>
         </table>
 
+
+      </div>
+
+      <!--display when content is not available in table-->
+      <div *ngIf="!isTestAvailable" class="content-not-available">
+        <h1 class="text-capitalize  text-center">Test not available</h1>
+        <h6 class="text-capitalize   text-center">click "create new test" button to add test</h6>
       </div>
 
     </mat-card>
@@ -81,33 +88,29 @@
       </div>
 
       <!-- create new test form -->
-      <form  [formGroup]="newTestgroup">
-
+      <form (ngSubmit)="createTest(test,createTestForm)" #createTestForm="ngForm" [formGroup]="addTestFormGroup">
         <!--type field-->
         <div>
           <label class="text-capitalize">type</label>
-          <select class="text-capitalize ">
-            <option *ngFor="let type of testTypes" [value]="type.testType" class=" text-capitalize ">{{type.testType}}</option>
+          <select class="text-capitalize " [(ngModel)]="test.testType" name="testType" formControlName="testType" required>
+            <option *ngFor="let x of testTypes" [value]="x.type" class=" text-capitalize ">{{x.type}}</option>
           </select>
         </div>
 
         <!--date field-->
         <div>
           <label class="text-capitalize">date</label>
-          <input type="number"  formControlName="testDate" required />
-
+          <input type="number" name="testDate" [(ngModel)]="test.date" placeholder="ddmmyy" formControlName="testDate" required />
         </div>
 
         <!--button to save created test-->
-        <button mat-button class="text-capitalize create-btn" (click)="createTest()">
+        <button mat-button class="text-capitalize create-btn" [disabled]="!addTestFormGroup.valid">
           create test
         </button>
       </form>
-
-  
     </mat-card>
 
   </div>
 
- 
+
 </section>

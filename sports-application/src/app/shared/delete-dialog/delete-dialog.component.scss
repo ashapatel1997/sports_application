@@ -14,7 +14,7 @@
   span { padding: 40px 16px;  display: block; color: white; font-size: $medium; font-weight: 100; }
 }
 
- /*dialog actions (buttons)*/
+ /*dialog actions*/
 .dialog-actions { height: 50px;  border-top: 1px solid rgba(38,38,38,0.2);
   button { top: 50%; transform: translateY(-50%); float: right; margin-right: 10px; }
   .delete-btn { background: rgba(230,0,92,1); }
@@ -29,8 +29,7 @@
   .dialog-header { height: 40px;
     .dialog-heading { font-size: $medium; }
     .close-dialog-btn { font-size: 20px;
-      &:hover { background-color: rgba(38,38,38,0.5); }
-    }
+     }
   }
 
   /*confirmation-message*/

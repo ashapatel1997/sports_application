@@ -13,6 +13,9 @@ body { padding:0px;margin:0px;overflow:hidden;}
 .text-uppercase { text-transform: uppercase; }
 .text-capitalize { text-transform: capitalize; }
 
+/*text-size,alignment*/
+.text-x-small { font-size:$x-small;}
+
 /*remove inner & outer spin button of input [type=number]*/
 input::-webkit-inner-spin-button,
 input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
@@ -44,7 +47,6 @@ input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
   .mat-dialog-container { background: #b3b3b3; padding: 0px; overflow: hidden; min-width: 300px; }
 }
 
-
 /*tooltip custom style*/
 .tooltip { font-size: $small; }
 
@@ -57,25 +59,22 @@ input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
   100% { width: $w-40; opacity: 1; }
 }
 
-
+//placeholder color
+::placeholder {  color: white; opacity: 0.5; }
 
 
 // Small devices,extra small devices (landscape phones,portrait phones, less than 768px)
 @media (max-width:767.98px) {
-
   /*sideBar animation (width)*/
   @keyframes showSideSection {
     0% { width: $w-0; }
     100% { width: $w-100; }
   }
-
   /*dialog custome style*/
   .dialogStyle {
-    .mat-dialog-container {min-width: unset; }
+    .mat-dialog-container { min-width: unset; }
   }
 }
-
-
 
 // Medium devices,Small devices,extra small devices (landscape phones,portrait phones,tablets, less than 992px)
 @media (max-width:991.98px) {

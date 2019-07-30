@@ -1,0 +1,33 @@
+ <!--form heading -->
+<div class="form-heading">
+  <h1 class="text-capitalize">{{formHeading}}</h1>
+</div>
+
+
+<!-- add new athlete form -->
+<form #addAthleteForm="ngForm" class="add-new-athlete-form" (ngSubmit)="createAthlete(athlete,addAthleteForm)" [formGroup]="addAthleteFormGroup">
+
+  <!--name field-->
+  <div>
+    <label class="text-capitalize">name</label>
+    <select class="text-capitalize " [(ngModel)]="athlete.name" name="athleteName" formControlName="name" required>
+      <option *ngFor="let x of athleteNames" [value]="x.name" class="text-capitalize ">{{x.name}}</option>
+    </select>
+  </div>
+
+  <!--distance field-->
+  <div>
+    <label class="text-capitalize">distance (meter)</label>
+    <input type="number" [(ngModel)]="athlete.distance" name="distance" formControlName="distance" required />
+  </div>
+
+  <!--save/delete button-->
+  <button mat-button class="text-capitalize  "  type="submit" [disabled]="!addAthleteFormGroup.valid">
+    save
+  </button>
+  <button mat-button class="text-capitalize " [ngClass]="{'hide-element':isDisableDeleteButton,'delete-btn':!isDisableDeleteButton}" (click)="deleteAthlete(athlete)">
+    delete
+  </button>
+
+  
+</form>

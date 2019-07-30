@@ -7,12 +7,14 @@ import { SharedModule } from '../app/shared/shared.module';
 import { TestResultsComponent } from './test-results/test-results.component';
 import { TestDetailsComponent } from './test-details/test-details.component';
 import { DeleteDialogComponent } from '../app/shared/delete-dialog/delete-dialog.component';
+import { AddAthleteComponent } from './test-details/add-athlete/add-athlete.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TestResultsComponent,
     TestDetailsComponent,
+    AddAthleteComponent,
   ],
 
   imports: [

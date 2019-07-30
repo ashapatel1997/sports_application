@@ -7,6 +7,6 @@
     "\\src\\app\\shared\\delete-dialog",
     "\\src\\app\\shared\\styles"
   ],
-  "SelectedNode": "\\src\\styles.scss",
+  "SelectedNode": "\\src\\app\\shared\\delete-dialog\\delete-dialog.component.html",
   "PreviewInSolutionExplorer": false
 }

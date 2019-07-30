@@ -16,13 +16,6 @@
 /*header button label*/
 .header-btn-label { display: inline; }
 
-/*--------bottom right section (add new athlete)--------*/
-
-/*form to add new athlete to test*/
-.add-new-athlete-form { 
-  button { line-height: 35px; margin:10px 10px 20px 0px; color: white; font-size: $medium; border: 2px solid rgba(64, 64, 64,0.6); }
-  .delete-btn { display: inline-block; }
-}
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width:575px) {
@@ -65,15 +58,7 @@
 
 }
 
-// Medium devices,Small devices,extra small devices (landscape phones,portrait phones,tablets, less than 992px)
-@media (max-width:991.98px) {
 
-  /*form to add new athlete*/
-  .add-new-athlete-form {
-    button { font-size: $x-small; line-height: 30px; }
-  }
-
-}
 
 
 

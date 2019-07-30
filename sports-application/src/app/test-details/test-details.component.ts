@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TestresultsService } from '../../app/testresults.service';
 import { TestDetail } from '../../app/test-detail';
-import { MatTableDataSource, } from '@angular/material';
+import { MatTableDataSource, MatSort, } from '@angular/material';
+import { Test } from '../test';
+import { ActivatedRoute } from '@angular/router';
+import { Athlete } from '../athlete';
 
 @Component({
   selector: 'app-test-details',
@@ -9,17 +12,21 @@ import { MatTableDataSource, } from '@angular/material';
   styleUrls: ['./test-details.component.scss']
 })
 
-export class TestDetailsComponent  {
+export class TestDetailsComponent {
 
   constructor(private _testResultsService: TestresultsService,
-   ) { }
+    private _activatedRoute: ActivatedRoute
+  ) { }
 
-  //object for TestDetail class
-  testDetails: TestDetail[] = this._testResultsService.getTestDetails();
+  //object of Test class
+  test: Test;
 
-  //reference to disply test data columns in material table
-  dataSource;
+  //object of Athlete class
+  athlete: Athlete;
 
+  //table data source
+  dataSource: any;
+  
   //array to store columns attributes in test data table
   displayedColumns: string[];
 
@@ -28,32 +35,56 @@ export class TestDetailsComponent  {
    * styleAfterAction: changes the width,display,position of the element
    * hideDeleteButton : hide when add new data form is open/ show when click on athlete to change data
    */
-   styleBeforeAction: boolean=true;
-   styleAfterAction: boolean = false;
-   hideDeleteButton: boolean;
+  styleBeforeAction: boolean = true;
+  styleAfterAction: boolean = false;
+  hideDeleteButton: boolean;
 
   //dynamic heading of add/edit atlete form
   formHeading: string;
 
-/**A lifecycle hook that is called after
- * Angular has initialized all data-bound properties of a directive */
+  //test name and date to display in heading
+  testName: string;
+  testDate: number;
+
+  //test id fetch from router link
+  testId: number;
+
+  //if athlete is not availale then hide list and  user-instruction, else display
+  isAthleteAvailable: boolean;
+
+  /**A lifecycle hook that is called after
+   * Angular has initialized all data-bound properties of a directive */
   ngOnInit() {
-    
-    //reference to column attribute of table data
-    this.displayedColumns = ['id', 'ranking', 'distance','rating'];
 
-    //instance of the mat-table data source
-    this.dataSource = new MatTableDataSource<TestDetail>(this.testDetails);
+    this.test = new Test();
 
+    //fetch test id from route and get all details of the test
+    this._activatedRoute.paramMap.subscribe(e => {
+      this.testId = +e.get('id');
+      if (this.testId) {
+        this.test = this._testResultsService.getTest(this.testId);
+        this.testName = this.test.testType;
+        this.testDate = this.test.date;
+      }
+
+    });
+
+    //column attributes and data source
+    this.displayedColumns = ['sr', 'name', 'ranking', 'fitnessRating'];
+    this.dataSource = new MatTableDataSource<Athlete>(this.test.athlete);
+
+    //check weather the athletes are available or not
+    this.checkIsAthleteAvailable();
+   
   }
 
-
-/**
- *on click of "add new athlete to test" button, open/close section for create new test
- **/
+  /**
+   *on click of "add new athlete" button, open bottom right section 
+   **/
   showAddNewAthleteSection() {
     this.formHeading = "add new athlete to test";
     this.hideDeleteButton = true;
+    this.athlete = new Athlete();
     this.show();
   }
 
@@ -65,50 +96,46 @@ export class TestDetailsComponent  {
     this.hide();
   }
 
-/*close "add new athlete" section on click of close btn icon*/
+  /*close bottom right section on click of close btn icon*/
   closeSideSection() {
     this.hide();
   }
 
-  /**get selected row
+  /**get selected row to edit
   * 
   * @param row gets the values of specific selected row to change data 
   */
   selectRow(row) {
+
+    //if form is already open then show snack bar message
     if (this.styleAfterAction) {
-      
       const snackBarMessage = 'Close SideBar Try Again';
       this._testResultsService.openSnackBar(snackBarMessage);
     }
+
+    //else open bottom right section to change data for athlete
     else {
-      //TODO: pass athlete data to form 
+      //assign selected row object to empty object,then pass to form fields
+      const rowValue = Object.assign({}, row);
+      this.athlete = rowValue;
+
+      //change form heading
       this.formHeading = "change data for athlete";
+
+      //show delete button
       this.hideDeleteButton = false;
+
+      //show bottom right section
       this.show();
-      
     }
-    
+
   }
 
-  /**save athlete to the test */
-  saveAthlete() {
-    this.hide();
-    //TODO: save athlete to test
-  }
-
-  /** open "delete athlete confirmation diaolg" on click of delete button
-   *
-   * */
-  deleteAthlete() {
-    this._testResultsService.openDialog('delete athlete','do you want to delete athlete from test?');
-  }
-
-
-  /** open "delete test confirmation diaolg" on click of delete test button
+  /** delete test
   *
   * */
   deleteTest() {
-    this._testResultsService.openDialog('delete test', 'do you want to delete test?');
+    this._testResultsService.openDialog('delete test', 'do you want to delete test?', this.test.id);
   }
 
   /*show bottom right section*/
@@ -122,4 +149,34 @@ export class TestDetailsComponent  {
     this.styleAfterAction = false;
     this.styleBeforeAction = true;
   }
+
+  /**receive value from child component
+   * 
+   * @param receivedValue: true to hide bottom right section
+   */
+  receiveFromChild(receivedValue: boolean) {
+
+    this.styleAfterAction = !receivedValue;
+    this.styleBeforeAction = receivedValue;
+
+    //table data source data source
+    this.dataSource = new MatTableDataSource<Athlete>(this.test.athlete);
+
+    this.checkIsAthleteAvailable();
+   
+  }
+
+  /**check weather the athlete is available or not */
+  checkIsAthleteAvailable() {
+
+    //if athlete is not availale then hide list and  user-instruction, else display
+    if (this.test.athlete.length == 0) {
+      this.isAthleteAvailable = false;
+    }
+    else {
+      this.isAthleteAvailable = true;
+    }
+
+  }
+
 }

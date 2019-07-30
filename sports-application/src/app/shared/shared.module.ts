@@ -15,7 +15,9 @@ import {
   MatToolbarModule,
   MatSnackBarModule,
   MatDialogModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatSortModule,
+  MatPaginatorModule
 } from '@angular/material';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
@@ -38,7 +40,9 @@ const modules = [
   MatToolbarModule,
   MatSnackBarModule,
   MatDialogModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatSortModule,
+  MatPaginatorModule
 ];
 
 @NgModule({

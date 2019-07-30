@@ -9,7 +9,12 @@
 
 /*bottom left section */
 .bottom-left-section { height: calc(100vh - 60px); vertical-align: top;
-  .list-card { margin-bottom: 50px; width: 70%; left: 15%; border: unset; box-shadow: none; background: unset; bottom: 15%; top: 10%; padding: 0px; display: inline-block; }
+  .list-card { margin-bottom: 50px; width: 70%; left: 15%; border: unset; box-shadow: none; background: unset; bottom: 15%; top: 10%; padding: 0px; display: inline-block;
+    .content-not-available { width: 100%;
+      h1 { text-align: center; }
+      h6 { font-size: $x-small; text-align: center;font-weight:100; }
+    }
+  }
 }
 
 /*width of bottom left section*/
@@ -47,7 +52,9 @@ form { margin: 20px;
     &:focus { outline: none; }
     &:active { outline: none; }
   }
-  .create-btn { line-height: 35px; margin: 20px 0px; display: block; color: white; font-size: $medium; border: 2px solid rgba(64, 64, 64,0.6); }
+  .create-btn { line-height: 35px; margin: 20px 0px; display: block; color: white; font-size: $medium; border: 2px solid rgba(64, 64, 64,0.6);
+    &:disabled { cursor: not-allowed; }
+  }
 }
 
 
@@ -61,7 +68,14 @@ form { margin: 20px;
   .bottom-section { height: calc(100vh - 40px); margin-top: 40px }
 
   /*bottom left section */
-  .bottom-left-section { height: calc(100vh - 40px); }
+  .bottom-left-section { height: calc(100vh - 40px);
+    .list-card {
+      .content-not-available {
+        h1 { font-size:$medium;}
+        h6 { font-size: $xx-small; }
+      }
+    }
+  }
 
   /*table containing tests list*/
   .list-table {
