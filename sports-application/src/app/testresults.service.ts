@@ -274,8 +274,8 @@ export class TestresultsService {
    */
   deleteAthlete(testId: number, athlete: Athlete) {
     this.testIndex = this.test.findIndex(i => i.id == testId);
-    this.athleteIndex = this.test[this.athleteIndex].athlete.findIndex(i => i.id == athlete.id)
-    this.test[this.athleteIndex].athlete.splice(this.athleteIndex, 1);
+    this.athleteIndex = this.test[this.testIndex].athlete.findIndex(i => i.id == athlete.id)
+    this.test[this.testIndex].athlete.splice(this.athleteIndex, 1);
     this.openSnackBar('Athlete Deleted Successfully');
   }
 
