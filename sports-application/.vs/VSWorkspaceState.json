@@ -5,8 +5,10 @@
     "\\src\\app",
     "\\src\\app\\shared",
     "\\src\\app\\shared\\delete-dialog",
-    "\\src\\app\\shared\\styles"
+    "\\src\\app\\shared\\styles",
+    "\\src\\app\\test-details",
+    "\\src\\app\\test-details\\add-athlete"
   ],
-  "SelectedNode": "\\src\\styles.scss",
+  "SelectedNode": "\\src\\app\\testresults.service.ts",
   "PreviewInSolutionExplorer": false
 }

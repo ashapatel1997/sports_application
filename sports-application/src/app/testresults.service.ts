@@ -12,15 +12,6 @@ import { Router } from '@angular/router';
 
 export class TestresultsService {
 
-  constructor(private _matDialog: MatDialog, private _matSnackBar: MatSnackBar, private _router: Router) { }
-
-  /*variables to change style according to boolean value
-   * changeElementWidth : changes the width,display,position of the element
-   * initialStyle: provide the initial position,width,display properties of the element
-   */
-  changeElementWidth: boolean = false;
-  initialStyle: boolean = true;
-
   //athlete names
   athleteName: any[] = [
     { name: 'Queen Jacobi' },
@@ -46,7 +37,7 @@ export class TestresultsService {
       id: 1,
       date: 110719,
       testType: this.testType[0].type,
-      athlete: []
+      athlete: [{ id: 1, name: 'Lula Uhlman', distance: 2.5, fitnessRating: 'Good' }]
     },
     {
       id: 2,
@@ -54,30 +45,7 @@ export class TestresultsService {
       testType: this.testType[1].type,
       athlete: []
     }
-
   ];
-
-
-  //get all tests
-  getTests() {
-    return this.test;
-  }
-
-  //get test based on id
-  getTest(id: number) {
-    const index = this.test.findIndex(x => x.id === id);
-    return this.test[index];
-  }
-
-  //get test type
-  getTestTypes() {
-    return this.testType;
-  }
-
-  //get athlete names
-  getAthleteNames() {
-    return this.athleteName;
-  }
 
   //maxId is to find out last maximum id of test
   maxTestId: number;
@@ -91,14 +59,42 @@ export class TestresultsService {
   //maximum athlete id in specific test
   maxAthleteId: number
 
-  //index of test in array
+  //index of test 
   testIndex: number;
+
+  //index of athlete
+  athleteIndex: number;
 
   //distance covered by athlete
   distance: number;
 
   //set fitness rating based on distance
   setFitnessRating: string;
+
+
+  constructor(private _matDialog: MatDialog, private _matSnackBar: MatSnackBar, private _router: Router) { }
+
+ 
+  //get all tests
+  getTests() {
+    return this.test;
+  }
+
+  //get test based on id
+  getTest(id: number) {
+    this.testIndex = this.test.findIndex(x => x.id === id);
+    return this.test[this.testIndex];
+  }
+
+  //get test type
+  getTestTypes() {
+    return this.testType;
+  }
+
+  //get athlete names
+  getAthleteNames() {
+    return this.athleteName;
+  }
 
   /**create new test
    * 
@@ -118,7 +114,6 @@ export class TestresultsService {
           this.addTest(test, this.maxTestId);
         }
       }
-
       else {
         if (testDate) {
           this.maxTestId = this.test.reduce(function (i1, i2) { return (i1 > i2) ? i1 : i2 }).id;
@@ -126,22 +121,10 @@ export class TestresultsService {
         }
         else {
           this.openSnackBar('Test Is Already Created');
-        }
+         }       
       }
     }
   }
-
-  /**add test to array
-   * 
-   * @param test:object stores new created test data
-   * @param maxTestId: maximum id of test
-   */
-  addTest(test: Test, maxTestId: number) {
-    test.id = maxTestId + 1;
-    test.athlete = [];
-    this.test.push(test);
-  }
-
 
   /**compare (date & testType) of existing test and new created test to prevent duplication
    * 
@@ -161,6 +144,18 @@ export class TestresultsService {
     }
     return this.isDifferentDate
   }
+
+  /**add test to array
+   * 
+   * @param test:object stores new created test data
+   * @param maxTestId: maximum id of test
+   */
+  addTest(test: Test, maxTestId: number) {
+    test.id = maxTestId + 1;
+    test.athlete = [];
+    this.test.push(test);
+  }
+
 
   /**create new athlete
    * 
@@ -188,16 +183,16 @@ export class TestresultsService {
 
     //edit athlete
     else {
-      const index = this.test[this.testIndex].athlete.findIndex(i => i.id == athlete.id);
+      this.athleteIndex = this.test[this.testIndex].athlete.findIndex(i => i.id == athlete.id);
 
       //fitness rating based on distance covered
       this.distance = athlete.distance * 1000;
       athlete.fitnessRating = this.setRating(this.distance, athlete.fitnessRating);
 
-      this.test[this.testIndex].athlete[index] = athlete;
+      this.test[this.testIndex].athlete[this.athleteIndex] = athlete;
     }
   }
-  
+
   /** add athlete to test
    * 
    * @param athlete:reference of Athlete class
@@ -208,21 +203,21 @@ export class TestresultsService {
     this.athlete.id = maxAthleteId + 1;
     this.athlete.name = athlete.name;
     this.athlete.distance = athlete.distance;
-    
-   // fitness rating based on distance covered
+
+    // fitness rating based on distance covered
     this.distance = athlete.distance * 1000;
     this.athlete.fitnessRating = this.setRating(this.distance, this.athlete.fitnessRating);
-    
+
     this.test[this.testIndex].athlete.push(this.athlete);
   }
 
-  /**set rating nased on distance
+  /**set rating based on distance
    * 
    * @param distance:distance covered by athlete
    * @param fitnessRating:fitness rating based on distance
    */
   setRating(distance: number, fitnessRating: string) {
-    
+
     if (distance <= 1000)
       fitnessRating = 'Below Average';
     else if (distance > 1000 && distance <= 2000)
@@ -235,52 +230,55 @@ export class TestresultsService {
     return fitnessRating;
   }
 
+  
+  /**open "delete dialog"
+   * 
+   * @param heading: heading og the dialog
+   * @param message:confirmation message in dialog
+   */
+  async openDialog(heading: string, message: string, testId: number, athlete: Athlete) {
+  
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.panelClass = ['dialogStyle'];
+    dialogConfig.position = { top: '30px' };
+    dialogConfig.autoFocus = false;
+    dialogConfig.restoreFocus = false;
+    dialogConfig.data = { 'heading': heading, 'message': message };
+    const res = await this._matDialog.open(DeleteDialogComponent, dialogConfig)
+      .afterClosed().toPromise();
+      
+    if (res) {
+      if (heading == 'delete test')
+        this.deleteTest(testId);
+      else
+        this.deleteAthlete(testId, athlete);
+    }
+  }
+
+
   /**delete test
    * 
-   * @param id:id of the test that is being deleted
+   * @param testId:id of the test that is being deleted
    */
-  deleteTest(id: number) {
-    const index = this.test.findIndex(x => x.id === id);
-    this.test.splice(index, 1);
+  deleteTest(testId: number) {
+    this.testIndex = this.test.findIndex(x => x.id === testId);
+    this.test.splice(this.testIndex, 1);
     this.openSnackBar('Test Deleted Successfully');
     this._router.navigate(['testresults']);
   }
- 
+
   /**delete athlete from test
    * 
    * @param testId:id of test from which athlete is being deleted
    * @param athlete: delete athlete reference
    */
   deleteAthlete(testId: number, athlete: Athlete) {
-    const index = this.test.findIndex(i => i.id == testId);
-    const athleteIndex = this.test[index].athlete.findIndex(i => i.id == athlete.id)
-    this.test[index].athlete.splice(athleteIndex, 1);
+    this.testIndex = this.test.findIndex(i => i.id == testId);
+    this.athleteIndex = this.test[this.athleteIndex].athlete.findIndex(i => i.id == athlete.id)
+    this.test[this.athleteIndex].athlete.splice(this.athleteIndex, 1);
     this.openSnackBar('Athlete Deleted Successfully');
   }
 
-  /**open "delete dialog"
-   * 
-   * @param heading: heading og the dialog
-   * @param message:confirmation message in dialog
-   */
-  openDialog(heading: string, message: string, id: number) {
-
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.panelClass = ['dialogStyle'];
-    dialogConfig.position = { top: '30px' };
-    dialogConfig.autoFocus = false;
-    dialogConfig.restoreFocus = false;
-    dialogConfig.data = { 'heading': heading, 'message': message, };
-    this._matDialog.open(DeleteDialogComponent, dialogConfig)
-      .beforeClosed()
-      .subscribe(res => {
-        //delete test 
-        if (res == true) {
-          this.deleteTest(id);
-        }
-      });
-
-  }
 
   /** notification 
    * 

@@ -13,27 +13,11 @@ import { Athlete } from '../athlete';
 
 export class TestDetailsComponent {
 
-  constructor(private _testResultsService: TestresultsService,
-    private _activatedRoute: ActivatedRoute
-  ) { }
-
-  //object of Test class
-  test: Test;
-
-  //object of Athlete class
-  athlete: Athlete;
-
-  //table data source
-  dataSource: any;
-  
-  //array to store columns attributes in test data table
-  displayedColumns: string[];
-
   /*variables to change style according to boolean value
-   * styleBeforeAction :provide the initial position,width,display properties of the element
-   * styleAfterAction: changes the width,display,position of the element
-   * hideDeleteButton : hide when add new data form is open/ show when click on athlete to change data
-   */
+  * styleBeforeAction :provide the initial position,width,display properties of the element
+  * styleAfterAction: changes the width,display,position of the element
+  * hideDeleteButton : hide when add new data form is open/ show when click on athlete to change data
+  */
   styleBeforeAction: boolean = true;
   styleAfterAction: boolean = false;
   hideDeleteButton: boolean;
@@ -51,8 +35,22 @@ export class TestDetailsComponent {
   //if athlete is not availale then hide list and  user-instruction, else display
   isAthleteAvailable: boolean;
 
-  /**A lifecycle hook that is called after
-   * Angular has initialized all data-bound properties of a directive */
+  //object of Test class
+  test: Test;
+
+  //object of Athlete class
+  athlete: Athlete;
+
+  //table data source
+  dataSource: any;
+
+  //array to store columns attributes in test data table
+  displayedColumns: string[];
+
+  constructor(private _testResultsService: TestresultsService,private _activatedRoute: ActivatedRoute) { }
+
+ 
+  /**A lifecycle hook that is called after Angular has initialized all data-bound properties of a directive */
   ngOnInit() {
 
     this.test = new Test();
@@ -65,7 +63,6 @@ export class TestDetailsComponent {
         this.testName = this.test.testType;
         this.testDate = this.test.date;
       }
-
     });
 
     //column attributes and data source
@@ -87,19 +84,6 @@ export class TestDetailsComponent {
     this.show();
   }
 
-  /** on outside click, close section for create new test
-   * 
-   * @param event listens outside click Event
-   */
-  onClickedOutside(event: Event) {
-    this.hide();
-  }
-
-  /*close bottom right section on click of close btn icon*/
-  closeSideSection() {
-    this.hide();
-  }
-
   /**get selected row to edit
   * 
   * @param row gets the values of specific selected row to change data 
@@ -108,12 +92,13 @@ export class TestDetailsComponent {
 
     //if form is already open then show snack bar message
     if (this.styleAfterAction) {
-      const snackBarMessage = 'Close SideBar Try Again';
+      const snackBarMessage = 'Close SideBar and Try Again';
       this._testResultsService.openSnackBar(snackBarMessage);
     }
 
     //else open bottom right section to change data for athlete
     else {
+
       //assign selected row object to empty object,then pass to form fields
       const rowValue = Object.assign({}, row);
       this.athlete = rowValue;
@@ -134,8 +119,22 @@ export class TestDetailsComponent {
   *
   * */
   deleteTest() {
-    this._testResultsService.openDialog('delete test', 'do you want to delete test?', this.test.id);
+    this._testResultsService.openDialog('delete test', 'do you want to delete test?', this.test.id, undefined);
   }
+
+  /** on outside click, close section for create new test
+   * 
+   * @param event listens outside click Event
+   */
+  onClickedOutside(event: Event) {
+    this.hide();
+  }
+
+  /*close bottom right section on click of close btn icon*/
+  closeSideSection() {
+    this.hide();
+  }
+
 
   /*show bottom right section*/
   show() {

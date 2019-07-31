@@ -32,7 +32,7 @@
   <div class="bottom-left-section" [ngClass]="{'bottom-left-section-before-action':styleBeforeAction,'bottom-left-section-after-action':styleAfterAction}">
    
     <!-- user instruction and table for test details -->
-    <mat-card class="list-card">
+    <mat-card class="list-card bottom-spacing">
 
       <!-- instruction -->
       <div class="user-instruction" *ngIf="isAthleteAvailable">
@@ -99,7 +99,7 @@
     </i>
 
     <!--heading and form to create new test-->
-    <mat-card class="form-card">
+    <mat-card class="form-card bottom-spacing">
       <add-athlete (closeSideSection)="receiveFromChild($event)" [formHeading]="formHeading" [isDisableDeleteButton]="hideDeleteButton" [athlete]="athlete" [isCloseSideSection]="styleBeforeAction"></add-athlete>
     </mat-card>
    

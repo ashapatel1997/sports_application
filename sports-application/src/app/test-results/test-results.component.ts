@@ -15,12 +15,6 @@ import { Router } from '@angular/router';
 
 export class TestResultsComponent implements OnInit {
 
-  constructor(private _testResultsService: TestresultsService,
-    private _router: Router,
-    private _formBuilder: FormBuilder
-  ) { }
-
-
   //object for Test class
   tests: Test[];
 
@@ -49,17 +43,8 @@ export class TestResultsComponent implements OnInit {
   //check weather the test is available or not
   isTestAvailable: boolean;
 
-  //read refernce od test list table 
-   @ViewChild('createTestForm', { static: true }) createTestForm: NgForm;
+  constructor(private _testResultsService: TestresultsService,private _router: Router,private _formBuilder: FormBuilder) { }
 
-  //table paginator
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-
-  //initial page size and page size options
-  pageSize = 2;
-  pageSizeOptions: number[] = [0, 2, 5, 10,15];
- 
   /**A lifecycle hook that is called after
    * Angular has initialized all data-bound properties of a directive */
   ngOnInit() {
@@ -79,21 +64,14 @@ export class TestResultsComponent implements OnInit {
     //check weather the test is available or not
     this.checkIsTestAvailable();
 
-    //add-test form validation
-    this.addTestFormGroup = this._formBuilder.group(
-      {
-        testType: ['', Validators.required],
-        testDate: ['', Validators.required]
-      }
-    );
-
+    //reset and validate form
+    this.resetAndValidateTestForm();
   }
 
   /**
    *open bottom right section
    **/
   showCreateNewTestSection() {
-
     //if section is already open, then disply snack bar message
     if (this.styleAfterAction == true) {
       const message = 'Form is already open';
@@ -132,9 +110,9 @@ export class TestResultsComponent implements OnInit {
   /**create new test
    * 
    * @param test:object pass to create new test
-   * @param createTestForm:template reference variable of create-test form
+   * 
    */
-  createTest(test: Test, createTestForm: NgForm) {
+  createTest(test: Test) {
 
     //assign test object to empty object 
     const newTest: Test = Object.assign({}, test);
@@ -147,9 +125,6 @@ export class TestResultsComponent implements OnInit {
    
     this.isTestAvailable = true;
 
-    //reset form
-    createTestForm.reset();
-
     //close bottom right section
     this.hide();
 
@@ -159,13 +134,24 @@ export class TestResultsComponent implements OnInit {
   hide() {
     this.styleAfterAction = false;
     this.styleBeforeAction = true;
-    this.createTestForm.reset();
+
+    this.resetAndValidateTestForm();
   }
 
   /*show bottom right section*/
   show() {
     this.styleAfterAction = true;
     this.styleBeforeAction = false;
+  }
+
+  /**reset and validate form */
+  resetAndValidateTestForm() {
+    this.addTestFormGroup = this._formBuilder.group(
+      {
+        testType: ['', Validators.required],
+        testDate: ['', Validators.required]
+      }
+    );
   }
 
 /**check weather the Test is available or not */

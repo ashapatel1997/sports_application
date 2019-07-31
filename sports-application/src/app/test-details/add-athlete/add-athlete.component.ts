@@ -13,10 +13,6 @@ import { Athlete } from '../../athlete';
 
 export class AddAthleteComponent  {
 
-  constructor(private _testResultsService: TestresultsService, private _activatedRoute: ActivatedRoute, private _formBuilder: FormBuilder) { }
-
-/*received data from test-details component*/
-
   //form heading
   @Input() formHeading: string;
 
@@ -29,11 +25,8 @@ export class AddAthleteComponent  {
   //check weather the bottom right section is open or not
   @Input() isCloseSideSection: boolean;
 
-   //close bottom right section
+  //close bottom right section
   @Output() closeSideSection = new EventEmitter<boolean>();
-  
-  //static: true => results available in ngOnInit
-  @ViewChild('addAthleteForm', { static: true }) athleteForm: NgForm;
 
   //array object for Test class
   tests: Test[];
@@ -42,8 +35,8 @@ export class AddAthleteComponent  {
   test: Test;
 
   //table data source
-  dataSource:any;
-  
+  dataSource: any;
+
   //get athlete names from TestresultsService
   athleteNames: string[] = this._testResultsService.getAthleteNames();
 
@@ -53,20 +46,12 @@ export class AddAthleteComponent  {
   //form group instance for add-athlete form
   addAthleteFormGroup: FormGroup;
 
-  /**Respond when Angular (re)sets data-bound input properties */
-  ngOnChanges()
-  {
-    if (this.isCloseSideSection) {
-      this.athleteForm.reset();
-    }
-  }
+  constructor(private _testResultsService: TestresultsService, private _activatedRoute: ActivatedRoute, private _formBuilder: FormBuilder) { }
 
-  /**Initialize the directive/component after Angular first displays
-   * the data-bound properties and sets the directive/component's input
-   * properties.
-   * */
+/**A lifecycle hook that is called after Angular has initialized all data-bound properties of a directive */
   ngOnInit() {
 
+    //class reference
     this.test = new Test();
     this.athlete = new Athlete();
 
@@ -78,14 +63,9 @@ export class AddAthleteComponent  {
       }
     });
 
-    //add-athlete form validation
-    this.addAthleteFormGroup = this._formBuilder.group(
-      {
-        name: ['', Validators.required],
-        distance: ['', Validators.required]
-      }
-    );
-    
+    //reset and validate form
+    this.resetAndValidateAthleteForm();
+   
   }
 
   /**get test  
@@ -99,28 +79,38 @@ export class AddAthleteComponent  {
   /**
    * 
    * @param athlete: reference of Athlete class
-   * @param addAthleteForm: template reference variable of add-athlete form
+   * 
    */
-  createAthlete(athlete: Athlete, addAthleteForm: NgForm) {
+  createAthlete(athlete: Athlete) {
 
     //assign athlete object to an empty object,then pass to create new athlete
     const newAthlete = Object.assign({}, athlete);
     this._testResultsService.createAthlete(newAthlete, this.test);
 
-    //reset form
-    addAthleteForm.reset();
-    
-    //boolean true to close side section
+    // close bottom right section
     this.closeSideSection.emit(true);
     
   }
 
+  /**reset and validate anthlete form */
+  resetAndValidateAthleteForm() {
+    this.addAthleteFormGroup = this._formBuilder.group(
+      {
+        name: ['', Validators.required],
+        distance: ['', Validators.required]
+      }
+    );
+  }
   /**delete athlete
    * 
    * @param athlete:reference of Athlete class
    */
-  deleteAthlete(athlete: Athlete) {
-    this._testResultsService.deleteAthlete(this.testId, athlete);
+  async deleteAthlete(athlete: Athlete) {
+  await this._testResultsService.openDialog('delete athlete', 'do you want to delete athlete?', this.testId, athlete);
+
+  // close bottom right section
+  this.closeSideSection.emit(true);
+   
   }
 
  

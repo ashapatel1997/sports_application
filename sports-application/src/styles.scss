@@ -26,6 +26,8 @@ input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 /*filled remaining space between elements*/
 .spacer { flex: auto; }
 
+/*bottom spacing*/
+.bottom-spacing { margin-bottom:50px;}
 
 /*snackbar custom style*/
 .snackBarStyle { background-color: rgba(230,0,92,1); color: white; min-width: 300px !important; padding: 0px !important; min-height: 40px !important; margin: 0 !important;

@@ -23,7 +23,7 @@
   <div class="bottom-left-section" [ngClass]="{'bottom-left-section-before-action':styleBeforeAction,'bottom-left-section-after-action':styleAfterAction}">
 
     <!-- user instruction and table for test list -->
-    <mat-card class="list-card">
+    <mat-card class="list-card bottom-spacing">
 
       <!-- instruction -->
       <div class="user-instruction" *ngIf="isTestAvailable">
@@ -80,7 +80,7 @@
     </i>
 
     <!--heading and form to create new test-->
-    <mat-card class="form-card">
+    <mat-card class="form-card bottom-spacing">
 
       <!-- heading -->
       <div class="form-heading">
@@ -88,7 +88,7 @@
       </div>
 
       <!-- create new test form -->
-      <form (ngSubmit)="createTest(test,createTestForm)" #createTestForm="ngForm" [formGroup]="addTestFormGroup">
+      <form (ngSubmit)="createTest(test)" [formGroup]="addTestFormGroup">
         <!--type field-->
         <div>
           <label class="text-capitalize">type</label>
