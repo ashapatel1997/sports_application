@@ -3,11 +3,11 @@
 /*---------------HEADER-----------------*/
 .header-row {
   .heading { font-size: $x-large }
-  .create-new-test-btn { border: 2px solid rgba(64, 64, 64,0.5); font-size: $medium; }
+  .create-new-test-btn { background: rgba(179, 0, 71,0.7); border: 2px solid rgba(64, 64, 64,0.5); font-size: $medium; }
 }
 
 // Extra small devices (portrait phones, less than 576px)
-@media (max-width: 575.98px) {
+@media (max-width: 575px) {
 
   /*---------------HEADER-----------------*/
   .header-row {
@@ -19,7 +19,7 @@
 
 
 // Small devices (landscape phones, less than 768px)
-@media (min-width:576px) and (max-width: 767.98px) {
+@media (min-width:576px) and (max-width: 767px) {
 
   /*---------------HEADER-----------------*/
     .header-row {

@@ -11,23 +11,19 @@ import { AddAthleteComponent } from './test-details/add-athlete/add-athlete.comp
 
 
 @NgModule({
+
   declarations: [
     AppComponent,
     TestResultsComponent,
     TestDetailsComponent,
     AddAthleteComponent,
   ],
-
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule
   ],
-
-  providers: [],
-
   bootstrap: [AppComponent],
-
   entryComponents: [DeleteDialogComponent]
  
 })

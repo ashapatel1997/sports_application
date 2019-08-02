@@ -1,8 +1,5 @@
- <!--form heading -->
-<div class="form-heading">
-  <h1 class="text-capitalize">{{formHeading}}</h1>
-</div>
-
+<!--form heading -->
+<h1 class="text-capitalize form-heading">{{formHeading}}</h1>
 
 <!-- add new athlete form -->
 <form  class="add-new-athlete-form" (ngSubmit)="createAthlete(athlete)" [formGroup]="addAthleteFormGroup">
@@ -29,5 +26,4 @@
     delete
   </button>
 
-  
 </form>

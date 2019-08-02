@@ -9,11 +9,7 @@
     <!-- fill remaining space between elements-->
     <span class="spacer"></span>
 
-    <!-- create new test button -->
-    <button mat-button class="text-capitalize add-new-athlete-btn" (click)="showAddNewAthleteSection()" [disabled]="styleAfterAction">
-      <span class="header-btn-label">add new athlete</span>
-      <mat-icon class="header-btn-icon" matTooltip="Add Athlete To Test">library_add</mat-icon>
-    </button>
+
 
     <!-- delete test button -->
     <button mat-button class="text-capitalize delete-athlete-btn" (click)="deleteTest()" [disabled]="styleAfterAction">
@@ -21,6 +17,11 @@
       <mat-icon class="header-btn-icon" matTooltip="Delete Test">delete_forever</mat-icon>
     </button>
 
+    <!-- create new test button -->
+    <button mat-button class="text-capitalize add-new-athlete-btn" (click)="showAddNewAthleteSection()" [disabled]="styleAfterAction">
+      <span class="header-btn-label">add new athlete</span>
+      <mat-icon class="header-btn-icon" matTooltip="Add Athlete To Test">library_add</mat-icon>
+    </button>
   </mat-toolbar-row>
 
 </mat-toolbar>
@@ -34,10 +35,11 @@
     <!-- user instruction and table for test details -->
     <mat-card class="list-card bottom-spacing">
 
+      <h1 class="text-capitalize heading" *ngIf="isAthleteAvailable">test details</h1>
+
       <!-- instruction -->
-      <div class="user-instruction" *ngIf="isAthleteAvailable">
-        <h6 class="text-capitalize">(Click on row to change athlete details)</h6>
-      </div>
+      <h6 class="text-capitalize user-instruction" *ngIf="isAthleteAvailable">(Click on row to change athlete details)</h6>
+
 
 
       <!--test details table-->
@@ -55,7 +57,7 @@
 
           <!-- date Column -->
           <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef class="text-capitalize "> ranking </th>
+            <th mat-header-cell *matHeaderCellDef class="text-capitalize "> athlete name </th>
             <td mat-cell *matCellDef="let element;let i=index">
               {{element.name}}
             </td>
@@ -82,7 +84,7 @@
 
       <!--display when content is not available in table-->
       <div *ngIf="!isAthleteAvailable" class="content-not-available">
-        <h1 class="text-capitalize ">Athlete not available</h1>
+        <h1 class="text-capitalize ">Athlete not available in this test</h1>
         <h6 class="text-capitalize ">click "Add new athlete" button to add athlete</h6>
       </div>
 

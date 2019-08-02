@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 
-
 export class TestresultsService {
 
   //athlete names
@@ -30,7 +29,6 @@ export class TestresultsService {
 
   //object of Athlete class;
   athlete: Athlete;
-
   //dummy test data
   test: Test[] = [
     {
@@ -46,35 +44,25 @@ export class TestresultsService {
       athlete: []
     }
   ];
-
-  //maxId is to find out last maximum id of test
+  //last maximum id of test
   maxTestId: number;
-
-  //array index
+  //for loop variable
   i: number;
-
   //compare date
   isDifferentDate: boolean = true;
-
   //maximum athlete id in specific test
   maxAthleteId: number
-
   //index of test 
   testIndex: number;
-
   //index of athlete
   athleteIndex: number;
-
   //distance covered by athlete
   distance: number;
-
   //set fitness rating based on distance
   setFitnessRating: string;
 
-
   constructor(private _matDialog: MatDialog, private _matSnackBar: MatSnackBar, private _router: Router) { }
 
- 
   //get all tests
   getTests() {
     return this.test;
@@ -106,13 +94,12 @@ export class TestresultsService {
     const testDate = this.compareDateType(test);
 
     //create new test if test-id is undefined)
-    if (test.id == undefined) {
+    if (test.id === undefined) {
       //if array is empty then assign new test-id=0, else new test-id = maxTestId + 1
-      if (this.test.length == 0) {
-        if (testDate) {
+      if (this.test.length === 0) {
           this.maxTestId = 0;
           this.addTest(test, this.maxTestId);
-        }
+        
       }
       else {
         if (testDate) {
@@ -132,12 +119,10 @@ export class TestresultsService {
    */
   compareDateType(test: Test) {
     for (this.i = 0; this.i < this.test.length; this.i++) {
-
-      if (this.test[this.i].date == test.date && this.test[this.i].testType == test.testType) {
+      if (this.test[this.i].date === test.date && this.test[this.i].testType === test.testType) {
         this.isDifferentDate = false;
         break;
       }
-
       else {
         this.isDifferentDate = true;
       }
@@ -167,9 +152,9 @@ export class TestresultsService {
     this.testIndex = this.test.findIndex(i => i.id == test.id);
 
     //add new athlete
-    if (athlete.id == undefined) {
-      //if athlete list is epmty them maximum athlete-id=0, else find maximum athlete-id
-      if (test.athlete.length == 0) {
+    if (athlete.id === undefined) {
+      //if athlete list is epmty then maximum athlete-id=0, else find maximum athlete-id
+      if (test.athlete.length === 0) {
         this.maxAthleteId = 0;
         this.addAthlete(athlete, this.maxAthleteId);
       }
@@ -177,13 +162,12 @@ export class TestresultsService {
       else {
         this.maxAthleteId = this.test[this.testIndex].athlete.reduce(function (i1, i2) { return (i1 > i2) ? i1 : i2 }).id;
         this.addAthlete(athlete, this.maxAthleteId);
-
       }
     }
 
     //edit athlete
     else {
-      this.athleteIndex = this.test[this.testIndex].athlete.findIndex(i => i.id == athlete.id);
+      this.athleteIndex = this.test[this.testIndex].athlete.findIndex(i => i.id === athlete.id);
 
       //fitness rating based on distance covered
       this.distance = athlete.distance * 1000;
@@ -248,7 +232,7 @@ export class TestresultsService {
       .afterClosed().toPromise();
       
     if (res) {
-      if (heading == 'delete test')
+      if (heading === 'delete test')
         this.deleteTest(testId);
       else
         this.deleteAthlete(testId, athlete);
@@ -273,8 +257,8 @@ export class TestresultsService {
    * @param athlete: delete athlete reference
    */
   deleteAthlete(testId: number, athlete: Athlete) {
-    this.testIndex = this.test.findIndex(i => i.id == testId);
-    this.athleteIndex = this.test[this.testIndex].athlete.findIndex(i => i.id == athlete.id)
+    this.testIndex = this.test.findIndex(i => i.id === testId);
+    this.athleteIndex = this.test[this.testIndex].athlete.findIndex(i => i.id === athlete.id)
     this.test[this.testIndex].athlete.splice(this.athleteIndex, 1);
     this.openSnackBar('Athlete Deleted Successfully');
   }

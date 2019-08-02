@@ -31,25 +31,19 @@ export class TestDetailsComponent {
 
   //test id fetch from router link
   testId: number;
-
   //if athlete is not availale then hide list and  user-instruction, else display
   isAthleteAvailable: boolean;
-
   //object of Test class
   test: Test;
-
   //object of Athlete class
   athlete: Athlete;
-
   //table data source
   dataSource: any;
-
   //array to store columns attributes in test data table
   displayedColumns: string[];
 
   constructor(private _testResultsService: TestresultsService,private _activatedRoute: ActivatedRoute) { }
 
- 
   /**A lifecycle hook that is called after Angular has initialized all data-bound properties of a directive */
   ngOnInit() {
 
@@ -75,7 +69,7 @@ export class TestDetailsComponent {
   }
 
   /**
-   *on click of "add new athlete" button, open bottom right section 
+   *bottom right sidenav
    **/
   showAddNewAthleteSection() {
     this.formHeading = "add new athlete to test";
@@ -86,7 +80,7 @@ export class TestDetailsComponent {
 
   /**get selected row to edit
   * 
-  * @param row gets the values of specific selected row to change data 
+  * @param row gets the values of specific selected row 
   */
   selectRow(row) {
 
@@ -98,17 +92,14 @@ export class TestDetailsComponent {
 
     //else open bottom right section to change data for athlete
     else {
-
       //assign selected row object to empty object,then pass to form fields
       const rowValue = Object.assign({}, row);
       this.athlete = rowValue;
 
       //change form heading
       this.formHeading = "change data for athlete";
-
       //show delete button
       this.hideDeleteButton = false;
-
       //show bottom right section
       this.show();
     }
@@ -130,11 +121,10 @@ export class TestDetailsComponent {
     this.hide();
   }
 
-  /*close bottom right section on click of close btn icon*/
+  /*close bottom right section on click of close icon*/
   closeSideSection() {
     this.hide();
   }
-
 
   /*show bottom right section*/
   show() {
@@ -168,7 +158,7 @@ export class TestDetailsComponent {
   checkIsAthleteAvailable() {
 
     //if athlete is not availale then hide list and  user-instruction, else display
-    if (this.test.athlete.length == 0) {
+    if (this.test.athlete.length === 0) {
       this.isAthleteAvailable = false;
     }
     else {

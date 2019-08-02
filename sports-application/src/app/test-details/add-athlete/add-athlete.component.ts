@@ -15,34 +15,24 @@ export class AddAthleteComponent  {
 
   //form heading
   @Input() formHeading: string;
-
   //disable delete button when creating new athlete
   @Input() isDisableDeleteButton: boolean;
-
   //object of Athlete class
   @Input() athlete: Athlete;
-
   //check weather the bottom right section is open or not
   @Input() isCloseSideSection: boolean;
-
   //close bottom right section
   @Output() closeSideSection = new EventEmitter<boolean>();
-
   //array object for Test class
   tests: Test[];
-
   //object of Test class;
   test: Test;
-
   //table data source
   dataSource: any;
-
   //get athlete names from TestresultsService
   athleteNames: string[] = this._testResultsService.getAthleteNames();
-
   //id of test
   testId: number;
-
   //form group instance for add-athlete form
   addAthleteFormGroup: FormGroup;
 

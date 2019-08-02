@@ -5,5 +5,4 @@ export class Test {
   date?: number;
   testType?: string;
   athlete?: Athlete[]=[];
-  
 }

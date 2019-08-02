@@ -3,11 +3,12 @@
 /*angular material theme import*/
 @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 
-/*common style import (style for test-details,test-results template)*/
+/*style for test-details,test-results template*/
 @import "./app/shared/styles/common.scss";
 
 body { padding: 0px; margin: 0px; overflow: hidden; }
 
+/*padding*/
 
 /*text transform*/
 .text-uppercase { text-transform: uppercase; }
@@ -53,13 +54,13 @@ input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 
 
 // Small devices,extra small devices (landscape phones,portrait phones, less than 768px)
-@media (max-width:767.98px) {
+@media (max-width:767px) {
 
   /*sideBar animation (width)*/
   @keyframes showSideSection {
-    0% { width: $w-0; }
     100% { width: $w-100; }
   }
+
   /*dialog custome style*/
   .dialogStyle {
     .mat-dialog-container { min-width: unset; }

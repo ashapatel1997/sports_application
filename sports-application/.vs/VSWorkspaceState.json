@@ -4,12 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\shared",
+    "\\src\\app\\shared\\delete-dialog",
     "\\src\\app\\shared\\styles",
     "\\src\\app\\test-details",
     "\\src\\app\\test-details\\add-athlete",
     "\\src\\app\\test-results",
     "\\src\\assets"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
+  "SelectedNode": "\\src\\app\\shared\\styles\\common.scss",
   "PreviewInSolutionExplorer": false
 }

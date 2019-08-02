@@ -15,9 +15,9 @@
 }
 
  /*dialog actions*/
-.dialog-actions { height: 50px;  border-top: 1px solid rgba(38,38,38,0.2);
+.dialog-actions { height: 50px; border-top: 1px solid rgba(38,38,38,0.2);
   button { top: 50%; transform: translateY(-50%); float: right; margin-right: 10px; }
-  .delete-btn { background: rgba(230,0,92,1); }
+  .delete-btn { background: #b30047; }
   .delete-cancel-btn { background-color: rgba(38,38,38,0.5); }
 }
 

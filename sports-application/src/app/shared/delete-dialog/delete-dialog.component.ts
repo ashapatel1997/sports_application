@@ -1,7 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
-import { Athlete } from '../../athlete';
-import { Test } from '../../test';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-delete-dialog',
@@ -9,12 +7,10 @@ import { Test } from '../../test';
   styleUrls: ['./delete-dialog.component.scss']
 })
 
-
 export class DeleteDialogComponent  {
 
   //dialog heading
   heading: string;
-
   //dialog message
   message: string;
  
@@ -24,11 +20,10 @@ export class DeleteDialogComponent  {
     this.message = data.message;
   }
 
-  /*close dialog on click of close icon*/
+  /*close dialog*/
   closeDialog() {
     this.matDialogRef.close(false);
   }
-
 
 }
 

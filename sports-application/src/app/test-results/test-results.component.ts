@@ -17,16 +17,12 @@ export class TestResultsComponent implements OnInit {
 
   //object for Test class
   tests: Test[];
-
   //binding value from class
   test: Test;
-
   //object for testType class
   testTypes: any[] = this._testResultsService.getTestTypes();
-
   //data source of test list table
   dataSource;
-
   //array to store columns attributes in test list table
   displayedColumns: string[];
 
@@ -39,14 +35,14 @@ export class TestResultsComponent implements OnInit {
 
   //form group instance for add-test form
   addTestFormGroup: FormGroup;
-
   //check weather the test is available or not
   isTestAvailable: boolean;
 
   constructor(private _testResultsService: TestresultsService,private _router: Router,private _formBuilder: FormBuilder) { }
 
-  /**A lifecycle hook that is called after
-   * Angular has initialized all data-bound properties of a directive */
+  /*A lifecycle hook that is called after
+   * Angular has initialized all data-bound properties of a directive
+   */
   ngOnInit() {
 
     //get all tests
@@ -68,9 +64,9 @@ export class TestResultsComponent implements OnInit {
     this.resetAndValidateTestForm();
   }
 
-  /**
+  /*
    *open bottom right section
-   **/
+   */
   showCreateNewTestSection() {
     //if section is already open, then disply snack bar message
     if (this.styleAfterAction == true) {
@@ -84,7 +80,7 @@ export class TestResultsComponent implements OnInit {
     }
   }
 
-  /** on outside click, close section for create new test
+  /*on outside click, clode right sidenav
    * 
    * @param event listens outside click Event
    */
@@ -92,14 +88,14 @@ export class TestResultsComponent implements OnInit {
     this.hide();
   }
 
-  /*close bottom right section on click of close btn icon*/
+  /*close bottom right section on click of close icon*/
   closeSideSection() {
     this.hide();
   }
 
   /**get selected row of test and navigate to test details
    * 
-   * @param row gets the values of specific selected row on click
+   * @param row gets the values of specific selected row
    */
   selectRow(row) {
     //find test with specific date
@@ -158,7 +154,7 @@ export class TestResultsComponent implements OnInit {
   checkIsTestAvailable() {
 
      //if test is not avilable then hide list and user-instruction, else display
-    if (this.tests.length == 0) {
+    if (this.tests.length === 0) {
       this.isTestAvailable = false;
     }
     else {
