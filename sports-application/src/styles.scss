@@ -6,7 +6,7 @@
 /*style for test-details,test-results template*/
 @import "./app/shared/styles/common.scss";
 
-body { padding: 0px; margin: 0px; overflow: hidden; }
+body { padding: 0; margin: 0; overflow: hidden; }
 
 /*padding*/
 
@@ -31,13 +31,13 @@ input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 .bottom-spacing { margin-bottom:50px;}
 
 /*snackbar custom style*/
-.snackBarStyle { background-color: rgba(230,0,92,1); color: white; min-width: 300px !important; padding: 0px !important; min-height: 40px !important; margin: 0 !important;
+.snackBarStyle { background-color: rgba(230,0,92,1); color: white; min-width: 300px !important; padding: 0!important; min-height: 40px !important; margin: 0 !important;
   span { margin: auto; text-align: center; padding: 0; }
 }
 
 /*dialog custome style*/
 .dialogStyle { background: unset;
-  .mat-dialog-container { background: #b3b3b3; padding: 0px; overflow: hidden; min-width: 300px; }
+  .mat-dialog-container { background: #b3b3b3; padding: 0; overflow: hidden; min-width: 300px; }
 }
 
 /*tooltip custom style*/

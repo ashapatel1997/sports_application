@@ -1,14 +1,14 @@
 @import 'variables';
 
 /*------HEADER-----*/
-.header { background: rgba(230,0,92,1); min-height: unset; height: 60px; position: fixed; top: 0; left: 0; right: 0; z-index: 2; }
+.header {background: rgba(230,0,92,1); min-height: unset; height: 60px; position: fixed; top: 0; left: 0; right: 0; z-index: 2; }
 
 /*------------BOTTOM SECTION------------------*/
 .bottom-section { overflow: auto; margin-top: 60px; min-height: calc(100vh - 60px); width: $w-100; background: url(/assets/app-background.jpg); background-repeat: no-repeat; background-size: 100% 100%; }
 
 /*bottom left section */
-.bottom-left-section { height: calc(100vh - 60px); vertical-align: top;
-  .list-card { width: 70%; left: 15%; border: unset; box-shadow: none; background: unset; top: 10%; padding: 0px; display: inline-block;
+.bottom-left-section {  height: calc(100vh - 60px); vertical-align: top;
+  .list-card { width: 70%; left: 15%; border: unset; box-shadow: none; background: unset; top: 10%; padding: 0; display: inline-block;
     .heading { color: #d9d9d9; text-align: center; font-size: $x-large; font-weight: 500; margin-bottom: 20px; }
     .content-not-available { width: 100%;
       h1 { text-align: center; }
@@ -39,7 +39,7 @@
 
 /*--------bottom right section --------*/
 .bottom-right-section { overflow: auto; right: 0%; position: fixed; display: inline-block; animation: showSideSection 0.3s 1 forwards; height: calc(100vh - 60px); vertical-align: top; background-color: rgba(138, 138, 138, 0.5);
-  .form-card { background: #b3b3b3; top: calc(10% + 75px); padding: 0px; width: $w-60; left: 20%; display: inline-block;
+  .form-card { background: #b3b3b3; top: calc(10% + 75px); padding: 0; width: $w-60; left: 20%; display: inline-block;
     .form-heading { background-color: rgba(38,38,38,0.9); text-align: center; font-size: $medium; margin: 0; line-height: 56px; font-weight: 100; }
   }
   .close-side-section-icon { padding: 5px; float: right; margin: 5px 25px; font-size: $x-large; color: rgba(38,38,38,1); cursor: pointer;
@@ -58,7 +58,7 @@ form { margin: 20px;
     &:focus { outline: none; }
     &:active { outline: none; }
   }
-  .create-btn { line-height: 35px; margin: 20px 0px; display: block; color: white; font-size: $medium; border: 2px solid rgba(64, 64, 64,0.6); background: #e6005c;
+  .create-btn { line-height: 35px; margin: 20px 0; display: block; color: white; font-size: $medium; border: 2px solid rgba(64, 64, 64,0.6); background: #e6005c;
     &:disabled { cursor: not-allowed; background: #808080 }
   }
 }

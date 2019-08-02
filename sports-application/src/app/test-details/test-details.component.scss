@@ -24,7 +24,7 @@
   /*header row*/
   .header-row {
     .test-name { font-size: $x-small; }
-    button { border: unset; font-size: $x-small; padding: 0px; line-height: 0px; min-width: 17px !important; }
+    button { border: unset; font-size: $x-small; padding: 0; line-height: 0; min-width: 17px !important; }
   }
 
   /*header button icon*/
@@ -38,7 +38,7 @@
   /*header row*/
     .header-row {
       .test-name { font-size: $medium; }
-      button { border: unset; font-size: $small; padding: 0px; line-height: 0px; min-width: 25px !important; }
+      button { border: unset; font-size: $small; padding: 0; line-height: 0; min-width: 25px !important; }
       .add-new-athlete-btn { margin-right: 4px; }
     }
   
