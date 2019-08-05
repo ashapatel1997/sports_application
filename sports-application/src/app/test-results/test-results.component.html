@@ -17,9 +17,8 @@
 </mat-toolbar>
 
 <!-- BOTTOM -->
-<section class="bottom-section">
-
- 
+<section class="bottom-section"><!--</section>
+<section class="bottom">-->
   <!--test list section -->
   <div class="bottom-left-section" [ngClass]="{'bottom-left-section-before-action':styleBeforeAction,'bottom-left-section-after-action':styleAfterAction}">
 
@@ -82,7 +81,7 @@
     <mat-card class="form-card bottom-spacing">
 
       <!-- form heading -->
-       <h1 class="text-capitalize form-heading">Create New Test</h1>
+      <h1 class="text-capitalize form-heading">Create New Test</h1>
 
       <!-- create new test form -->
       <form (ngSubmit)="createTest(test)" [formGroup]="addTestFormGroup">

@@ -4,7 +4,7 @@
 .header {background: rgba(230,0,92,1); min-height: unset; height: 60px; position: fixed; top: 0; left: 0; right: 0; z-index: 2; }
 
 /*------------BOTTOM SECTION------------------*/
-.bottom-section { overflow: auto; margin-top: 60px; min-height: calc(100vh - 60px); width: $w-100; background: url(/assets/app-background.jpg); background-repeat: no-repeat; background-size: 100% 100%; }
+.bottom-section { overflow: auto; margin-top: 60px; min-height: calc(100vh - 60px); width: $w-100; background: linear-gradient(rgba(89, 89, 89,0.3), rgba(89, 89, 89,0.3)), url(/assets/app-background.jpg); background-repeat: no-repeat; background-size: 100% 100%; }
 
 /*bottom left section */
 .bottom-left-section {  height: calc(100vh - 60px); vertical-align: top;
