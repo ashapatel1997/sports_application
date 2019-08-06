@@ -11,6 +11,6 @@
     "\\src\\app\\test-results",
     "\\src\\assets"
   ],
-  "SelectedNode": "\\src\\styles.scss",
+  "SelectedNode": "\\src\\app\\shared\\styles\\common.scss",
   "PreviewInSolutionExplorer": false
 }
